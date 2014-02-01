@@ -27,13 +27,6 @@ public class PreviewNode : MonoBehaviour
         m_domoni3d.transform.parent = transform;
         m_domoni3d.transform.localPosition = Vector3.zero;
         m_domoni3d.transform.localScale = new Vector3(25.0f, 25.0f, 25.0f);
-        
-        //[HACK]
-        if( m_domoni3d.m_stable )
-        {
-            m_domoni3d.transform.localScale = new Vector3(10.0f, 10.0f, 10.0f);
-        }
-        //[HACK]
     }
 
     /// <summary>

@@ -1,0 +1,11 @@
+
+*.csproj
+
+*.sln
+
+Eyetris/Eyetris.userprefs
+
+Eyetris/Library/*
+
+Eyetris/Temp/*
+
