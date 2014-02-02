@@ -698,7 +698,15 @@ public class Board : MonoBehaviour
     /// <returns></returns>
     protected bool canSwitchX()
     {
-        //TODO 
+		Domoni2d d2 = m_curDomino3d.GetSwitchedXDomino2d();
+
+		foreach( Grid2d g2 in d2.BLOCK_INFO )
+		{
+			if( isGridAvailable( g2.m_x + m_curBlockX, g2.m_y + m_curBlockY ) == false )
+			{
+				return false;
+			}
+		}
 
         return true;
     }
@@ -709,7 +717,15 @@ public class Board : MonoBehaviour
     /// <returns></returns>
     protected bool canSwitchY()
     {
-        //TODO 
+		Domoni2d d2 = m_curDomino3d.GetSwitchedYDomino2d();
+
+		foreach( Grid2d g2 in d2.BLOCK_INFO )
+		{
+			if( isGridAvailable( g2.m_x + m_curBlockX, g2.m_y + m_curBlockY ) == false )
+			{
+				return false;
+			}
+		}
 
         return true;
     }
@@ -720,10 +736,41 @@ public class Board : MonoBehaviour
     /// <returns></returns>
     protected bool canSwitchZ()
     {
-        //TODO 
+		Domoni2d d2 = m_curDomino3d.GetSwitchedZDomino2d();
+
+		foreach( Grid2d g2 in d2.BLOCK_INFO )
+		{
+			if( isGridAvailable( g2.m_x + m_curBlockX, g2.m_y + m_curBlockY ) == false )
+			{
+				return false;
+			}
+		}
 
         return true;
     }
+
+	/// <summary>
+	/// Ises the grid available.
+	/// </summary>
+	/// <returns><c>true</c>, if grid available was ised, <c>false</c> otherwise.</returns>
+	/// <param name="x">The x coordinate.</param>
+	/// <param name="y">The y coordinate.</param>
+	protected bool isGridAvailable( int x, int y )
+	{
+		if( x < 0 || y < 0 || x >= m_width || y >= m_height )
+		{
+			return false;
+		}
+
+		Grid grid = m_allGrids[x,y];
+
+		if( grid != null )
+		{
+			return false;
+		}
+
+		return true;
+	}
 
 	/// <summary>
 	/// refresh the domino final position 

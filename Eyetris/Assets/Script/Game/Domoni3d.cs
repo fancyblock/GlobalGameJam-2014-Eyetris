@@ -42,11 +42,6 @@ public class Domoni3d : MonoBehaviour
 	void Start () 
 	{
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	}
 
 	/// <summary>
 	/// generate the domoni via blockInfo 
@@ -117,6 +112,18 @@ public class Domoni3d : MonoBehaviour
         }
     }
 
+	/// <summary>
+	/// return the domino2d after switched 
+	/// </summary>
+	/// <returns>The switched domino2d.</returns>
+	public Domoni2d GetSwitchedXDomino2d()
+	{
+		Domoni2d d2 = new Domoni2d();
+		d2.ConvertByBefore3dSwitchX( m_blockState );
+
+		return d2;
+	}
+
     /// <summary>
     /// rotation animation
     /// </summary>
@@ -158,6 +165,18 @@ public class Domoni3d : MonoBehaviour
         }
     }
 
+	/// <summary>
+	/// return the domino2d after switched 
+	/// </summary>
+	/// <returns>The switched domino2d.</returns>
+	public Domoni2d GetSwitchedYDomino2d()
+	{
+		Domoni2d d2 = new Domoni2d();
+		d2.ConvertByBefore3dSwitchY( m_blockState );
+		
+		return d2;
+	}
+
     /// <summary>
     /// rotation animation
     /// </summary>
@@ -198,6 +217,18 @@ public class Domoni3d : MonoBehaviour
             g3.m_y = tmp;
         }
     }
+
+	/// <summary>
+	/// return the domino2d after switched 
+	/// </summary>
+	/// <returns>The switched domino2d.</returns>
+	public Domoni2d GetSwitchedZDomino2d()
+	{
+		Domoni2d d2 = new Domoni2d();
+		d2.ConvertByBefore3dSwitchZ( m_blockState );
+		
+		return d2;
+	}
 
     /// <summary>
     /// rotation animation
