@@ -23,6 +23,7 @@ public class Board : MonoBehaviour
     public float m_dorpDominoZ = 320.0f;
 	public Eye m_leftEye;
 	public Eye m_rightEye;
+	public PreDomino m_preDomino;
 
     protected Domoni3d m_curDomino3d = null;
     protected Domoni2d m_curDomino2d;
@@ -113,6 +114,8 @@ public class Board : MonoBehaviour
             addDominoToTheBoard();
             m_curDomino2d.ConvertByDomino3d(m_curDomino3d);
 
+			refreshDominoFinalPos();
+
             m_state = STATE_DROP;
         }
 		else
@@ -137,6 +140,10 @@ public class Board : MonoBehaviour
         {
             m_curDomino3d.SwitchX();
             m_curDomino2d.ConvertByDomino3d(m_curDomino3d);
+
+			m_preDomino.SetDomino( m_curDomino2d );
+			refreshDominoFinalPos();
+
             m_leftEye.RotateX();
             m_rightEye.RotateX();
             SePlayer.m_instance.PlayRoll();
@@ -158,9 +165,12 @@ public class Board : MonoBehaviour
 
         if( canSwitchY() )
         {
-            //TODO 
             m_curDomino3d.SwitchY();
             m_curDomino2d.ConvertByDomino3d(m_curDomino3d);
+
+			m_preDomino.SetDomino( m_curDomino2d );
+			refreshDominoFinalPos();
+
             m_leftEye.RotateY();
             m_rightEye.RotateY();
             SePlayer.m_instance.PlayRoll();
@@ -181,9 +191,12 @@ public class Board : MonoBehaviour
 
         if (canSwitchZ() )
         {
-            //TODO 
             m_curDomino3d.SwitchZ();
             m_curDomino2d.ConvertByDomino3d(m_curDomino3d);
+
+			m_preDomino.SetDomino( m_curDomino2d );
+			refreshDominoFinalPos();
+
             m_leftEye.RotateZ();
             m_rightEye.RotateZ();
             SePlayer.m_instance.PlayRoll();
@@ -251,6 +264,7 @@ public class Board : MonoBehaviour
         m_curDomino3d.gameObject.transform.localPosition = new Vector3(vec3.x - m_size, vec3.y, vec3.z);
 
         m_inCoroutine = false;
+		refreshDominoFinalPos();
     }
 
     /// <summary>
@@ -282,6 +296,7 @@ public class Board : MonoBehaviour
         m_curDomino3d.gameObject.transform.localPosition = new Vector3(vec3.x + m_size, vec3.y, vec3.z);
 
         m_inCoroutine = false;
+		refreshDominoFinalPos();
     }
 
     /// <summary>
@@ -709,5 +724,24 @@ public class Board : MonoBehaviour
 
         return true;
     }
+
+	/// <summary>
+	/// refresh the domino final position 
+	/// </summary>
+	protected void refreshDominoFinalPos()
+	{
+		// set the preview domino 
+		int finalY = getLandPosition();
+		int distance = m_curBlockY - finalY;
+		if( distance > 2 )
+		{
+			m_preDomino.transform.localPosition = new Vector3( m_curBlockX*m_size,finalY*m_size,0.0f);
+			m_preDomino.SetDomino( m_curDomino2d );
+		}
+		else
+		{
+			m_preDomino.SetDomino( null );
+		}
+	}
 
 }

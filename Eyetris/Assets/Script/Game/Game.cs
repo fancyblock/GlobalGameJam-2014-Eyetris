@@ -11,12 +11,14 @@ public class Game : MonoBehaviour
     protected float m_time;
     protected Domoni3d m_pendingDomino;
     protected bool m_addScore;
+	protected bool m_isGameOver;
 
 	// Use this for initialization
 	void Start () 
     {
         m_time = 0.0f;
         m_addScore = false;
+		m_isGameOver = false;
 
         genPendingDomino();
         m_previewNode.AddDomino3d(m_pendingDomino);
@@ -75,9 +77,10 @@ public class Game : MonoBehaviour
 
             m_addScore = true;
         }
-        else if( m_board.STATE == Board.STATE_GAME_OVER )
+		else if( m_board.STATE == Board.STATE_GAME_OVER && !m_isGameOver )
         {
             StartCoroutine("QuitToGameOver");
+			m_isGameOver = true;
         }
 	}
 
@@ -91,7 +94,7 @@ public class Game : MonoBehaviour
     {
 		SePlayer.m_instance.PlayOver();
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.3f);
 
         TransScene.Load("GameOver", 1.0f);
     }
