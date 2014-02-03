@@ -46,6 +46,14 @@ public class Controller : MonoBehaviour
         {
             SendMessage("rotateZ");
         }
-
 	}
+
+    /// <summary>
+    /// send the input 
+    /// </summary>
+    /// <param name="input"></param>
+    public void SendInput( string input )
+    {
+        SendMessage(input);
+    }
 }

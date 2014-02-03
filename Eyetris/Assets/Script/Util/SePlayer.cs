@@ -3,12 +3,29 @@ using System.Collections;
 
 public class SePlayer : MonoBehaviour 
 {
-    static public SePlayer m_instance = null;
+    static protected SePlayer m_instance = null;
 
     public AudioClip m_clip1;
     public AudioClip m_clip2;
     public AudioClip m_clip3;
     public AudioClip m_clip4;
+
+    /// <summary>
+    /// return the singleton of this class 
+    /// </summary>
+    static public SePlayer SharedInstance
+    {
+        get
+        {
+            if( m_instance == null )
+            {
+                GameObject go = new GameObject();
+                m_instance = go.AddComponent<SePlayer>();
+            }
+
+            return m_instance;
+        }
+    }
 
 	// Use this for initialization
 	void Start () 

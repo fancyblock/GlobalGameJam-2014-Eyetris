@@ -146,7 +146,7 @@ public class Board : MonoBehaviour
 
             m_leftEye.RotateX();
             m_rightEye.RotateX();
-            SePlayer.m_instance.PlayRoll();
+            SePlayer.SharedInstance.PlayRoll();
         }
     }
 
@@ -173,7 +173,7 @@ public class Board : MonoBehaviour
 
             m_leftEye.RotateY();
             m_rightEye.RotateY();
-            SePlayer.m_instance.PlayRoll();
+            SePlayer.SharedInstance.PlayRoll();
         }
     }
 
@@ -199,7 +199,7 @@ public class Board : MonoBehaviour
 
             m_leftEye.RotateZ();
             m_rightEye.RotateZ();
-            SePlayer.m_instance.PlayRoll();
+            SePlayer.SharedInstance.PlayRoll();
         }
     }
 
@@ -432,7 +432,7 @@ public class Board : MonoBehaviour
         Destroy(m_curDomino3d.gameObject);
         m_curDomino3d = null;
 
-        SePlayer.m_instance.PlayDong();
+        SePlayer.SharedInstance.PlayDong();
 
         // switch state 
         judgeBoard();
@@ -528,7 +528,7 @@ public class Board : MonoBehaviour
             Destroy(g.gameObject);
         }
 
-        SePlayer.m_instance.PlayBreak();
+        SePlayer.SharedInstance.PlayBreak();
 
         // display the feedback 
         int clearCnt = m_clearLines.Count;

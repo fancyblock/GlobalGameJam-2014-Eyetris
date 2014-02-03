@@ -92,7 +92,7 @@ public class Game : MonoBehaviour
     /// <returns></returns>
     protected IEnumerator QuitToGameOver()
     {
-		SePlayer.m_instance.PlayOver();
+        SePlayer.SharedInstance.PlayOver();
 
         yield return new WaitForSeconds(2.3f);
 
