@@ -21,8 +21,6 @@ public class Board : MonoBehaviour
     public float m_moveOffset = 3.0f;
 	public ResultEffect m_resultEffect;
     public float m_dorpDominoZ = 320.0f;
-	public Eye m_leftEye;
-	public Eye m_rightEye;
 	public PreDomino m_preDomino;
 
     protected Domoni3d m_curDomino3d = null;
@@ -144,8 +142,6 @@ public class Board : MonoBehaviour
 			m_preDomino.SetDomino( m_curDomino2d );
 			refreshDominoFinalPos();
 
-            m_leftEye.RotateX();
-            m_rightEye.RotateX();
             SePlayer.SharedInstance.PlayRoll();
         }
     }
@@ -171,8 +167,6 @@ public class Board : MonoBehaviour
 			m_preDomino.SetDomino( m_curDomino2d );
 			refreshDominoFinalPos();
 
-            m_leftEye.RotateY();
-            m_rightEye.RotateY();
             SePlayer.SharedInstance.PlayRoll();
         }
     }
@@ -197,8 +191,6 @@ public class Board : MonoBehaviour
 			m_preDomino.SetDomino( m_curDomino2d );
 			refreshDominoFinalPos();
 
-            m_leftEye.RotateZ();
-            m_rightEye.RotateZ();
             SePlayer.SharedInstance.PlayRoll();
         }
     }
